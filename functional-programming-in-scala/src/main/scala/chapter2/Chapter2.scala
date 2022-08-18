@@ -8,4 +8,16 @@ object Chapter2 extends App {
 
     go(n, 0, 1)
   }
+
+  def isSorted[A](as: Array[A], gt: (A,A) => Boolean): Boolean = {
+    def go(i: Int): Boolean =
+      if (i + 1 >= as.length)
+        true
+      else
+        if (gt(as(i),as(i + 1)))
+          go(i + 1)
+        else
+          false
+    go(0)
+  }
 }
