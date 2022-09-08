@@ -11,4 +11,54 @@ class Chapter3Spec extends AnyFlatSpec with Matchers {
   it should "return Nil for an empty list" in {
     List.tail(Nil) shouldEqual Nil
   }
+
+  "setHead" should "replace the first element of a non-empty list" in {
+    List.setHead(List(1,2,3), 0) shouldEqual List(0,2,3)
+  }
+
+  it should "return a singleton list if the list argument is Nil" in {
+    List.setHead(Nil, 1) shouldEqual List(1)
+  }
+
+  "drop" should "remove n elements when n is positive" in {
+    List.drop(List(1,2,3,4,5), 3) shouldEqual List(4,5)
+  }
+
+  it should "return the original list if n is zero" in {
+    List.drop(List(1,2,3,4,5), 0) shouldEqual List(1,2,3,4,5)
+  }
+
+  it should "return the original list if n is negative" in {
+    List.drop(List(1,2,3), -5) shouldEqual List(1,2,3)
+  }
+
+  it should "return Nil if n > length of list" in {
+    List.drop(List(1,2,3,4,5), 6) shouldEqual Nil
+  }
+
+  "dropWhile" should "return the original list if the function always returns false" in {
+    val original = List(1,2,3,4,5)
+    List.dropWhile(original, (x: Int) => false) shouldEqual original
+  }
+
+  it should "return Nil if the function always returns true" in {
+    val original = List(1,2,3,4,5)
+    List.dropWhile(original, (x: Int) => true) shouldEqual Nil
+  }
+
+  "init" should "return a singleton list when a 2 element list is given" in {
+    List.init(List(1,2)) shouldEqual List(1)
+  }
+
+  it should "return all but the last element" in {
+    List.init(List(1,2,3,4,5)) shouldEqual List(1,2,3,4)
+  }
+
+  it should "return Nil given Nil" in {
+    List.init(Nil) shouldEqual Nil
+  }
+
+  it should "return Nil given a singleton list" in {
+    List.init(List(1)) shouldEqual Nil
+  }
 }
