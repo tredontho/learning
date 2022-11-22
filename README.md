@@ -9,5 +9,8 @@ Following along with the [Crafting Interpreters](https://craftinginterpreters.co
 # Functional Programming in Scala
 Working through exercises in the [Functional Programming in Scala](https://www.manning.com/books/functional-programming-in-scala) book.
 
+# LeetCode
+Attempts/solutions for [LeetCode](https://leetcode.com/) problems
+
 # Optics by Example
 Working through exercises from [Optics by Example](https://leanpub.com/optics-by-example)
