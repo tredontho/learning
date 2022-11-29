@@ -61,4 +61,27 @@ class Chapter3Spec extends AnyFlatSpec with Matchers {
   it should "return Nil given a singleton list" in {
     List.init(List(1)) shouldEqual Nil
   }
+
+  "lengthViaFoldRight" should "return 0 for an empty list" in {
+    List.lengthViaFoldRight(Nil) shouldEqual 0
+  }
+
+  it should "return 1 for a singleton list" in {
+    List.lengthViaFoldRight(List(0)) shouldEqual 1
+  }
+
+  "sumViaFoldLeft" should "return 0 for an empty list" in {
+    List.sumViaFoldLeft(Nil) shouldEqual 0
+  }
+
+  it should "return 55 for the integers from 1 to 10" in {
+    List.sumViaFoldLeft(List(1,2,3,4,5,6,7,8,9,10)) shouldEqual 55
+  }
+
+  "productViaFoldLeft" should "return 1 for an empty list" in {
+    List.productViaFoldLeft(Nil) shouldEqual 1
+  }
+  it should "return 120 for the integers from 1 to 5" in {
+    List.productViaFoldLeft(List(1,2,3,4,5)) shouldEqual 120
+  }
 }

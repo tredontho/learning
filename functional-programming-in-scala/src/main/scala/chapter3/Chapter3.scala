@@ -48,10 +48,44 @@ object List {
       case Cons(_, Nil) => Nil
       case Cons(x, xs) => Cons(x, init(xs))
     }
-    // def go(l: List[A], acc: List[A]): List[A] = l match {
-    //   case Cons(_, Nil) => Cons(acc, Nil)
-    //   case Cons(x, xs) => go(xs, Cons(acc, x)
-    // }
   }
 
+  // Provided by the book
+  def foldRight[A, B](as: List[A], acc: B, f: (A, B) => B): B = as match {
+    case Nil => acc
+    case Cons(x, xs) => f(x, foldRight(xs, acc, f))
+  }
+
+  /* 3.7
+   * Product cannot be implemented with short-circuiting via `foldRight` due to
+   * the fact that foldRight does not actually call `f` until it reaches the end
+   * of the list
+   */
+
+  /* 3.8
+   * Passing Nil and Cons to `foldRight` will result in the same input list
+   * being returned
+   */
+
+  /* 3.9
+   * Compute the lenght of a list using foldRight
+   */
+  def lengthViaFoldRight[A](as: List[A]): Int = foldRight[A, Int](as, 0, (_, acc) => acc + 1)
+
+  /* 3.10
+   * Write tail-recursive foldLeft
+   */
+  @scala.annotation.tailrec
+  def foldLeft[A, B](as: List[A], acc: B, f: (B, A) => B): B = as match {
+    case Nil => acc
+    case Cons(x, xs) => foldLeft(xs, f(acc, x), f)
+  }
+
+  /* 3.11
+   * Write `sum`, `product`, `length` using `foldLeft`
+   */
+
+  def sumViaFoldLeft(as: List[Int]) = foldLeft[Int, Int](as, 0, _ + _)
+  def productViaFoldLeft(as: List[Int]) = foldLeft[Int, Int](as, 1, _ * _)
+  def lengthViaFoldLeft[A](as: List[A]) = foldLeft[A, Int](as, 1, (acc, _) => acc + 1)
 }
