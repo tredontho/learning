@@ -1,3 +1,7 @@
-/.bsp/
 target/
 .metals
+.bloop
+.bsp
+.metals
+project/metals.sbt
+project/project
