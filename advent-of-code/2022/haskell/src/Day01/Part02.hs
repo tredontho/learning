@@ -2,6 +2,7 @@
 module Day01.Part02 where
 
 import Day01.Part01 hiding (solve, solution)
+import Util (splitIntoGroups)
 
 import Data.List (sortBy)
 
