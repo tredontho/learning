@@ -7,5 +7,5 @@ splitIntoGroups _ [] = []
 splitIntoGroups p xs = group : splitIntoGroups p rest
   where
     (group, rest) = case break p xs of
-      (y, _ : ys) -> (y, ys)
-      (y, []) -> (y, [])
+        (y, _ : ys) -> (y, ys)
+        (y, []) -> (y, [])

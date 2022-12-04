@@ -1,13 +1,13 @@
 module Day02.Part02 where
 
-import Day02.Part01 (parseLine, Shape(..), charToShape, beats, scoreShape)
 import Data.List (find)
 import Data.Maybe (fromJust)
+import Day02.Part01 (Shape (..), beats, charToShape, parseLine, scoreShape)
 
 solve :: FilePath -> IO String
 solve file = do
-  input <- readFile file
-  pure . show $ solution input
+    input <- readFile file
+    pure . show $ solution input
 
 solution :: String -> Int
 solution = sum . map (scoreRound . parseLine) . lines
@@ -18,7 +18,7 @@ scoreRound (opponent, resultIndicator) = scoreResult result + scoreShape play
     result = charToResult resultIndicator
     play = choosePlay result (charToShape opponent)
 
-data Result = Win | Loss | Draw deriving Eq
+data Result = Win | Loss | Draw deriving (Eq)
 
 scoreResult :: Result -> Int
 scoreResult Win = 6

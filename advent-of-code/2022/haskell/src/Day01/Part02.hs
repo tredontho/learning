@@ -1,7 +1,8 @@
 {-# LANGUAGE TypeApplications #-}
+
 module Day01.Part02 where
 
-import Day01.Part01 hiding (solve, solution)
+import Day01.Part01 hiding (solution, solve)
 import Util (splitIntoGroups)
 
 import Data.List (sortBy)
@@ -11,5 +12,5 @@ solution = sum . take 3 . sortBy (flip compare) . countCalories . map (map $ rea
 
 solve :: FilePath -> IO String
 solve file = do
-  input <- readFile file
-  pure . show $ solution input
+    input <- readFile file
+    pure . show $ solution input
