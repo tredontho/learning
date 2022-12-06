@@ -1,5 +1,3 @@
-{-# LANGUAGE TypeApplications #-}
-
 module Day02.Part01 where
 
 import Data.Void (Void)
