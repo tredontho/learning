@@ -70,6 +70,8 @@ library
                       Day04.Part02,
                       Day05.Part01,
                       Day05.Part02,
+                      Day06.Part01,
+                      Day06.Part02,
                       Util
 
     -- Modules included in this library but not exported.
