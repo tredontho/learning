@@ -38,7 +38,7 @@ object Day01 extends DefaultDay[List[String], List[Elf], Int] {
       xs match {
         case Nil => acc
         case _ => {
-          val (chunk, rest) = takeWhile(compose(not, pred))(xs)
+          val (chunk, rest) = xs.span(pred.andThen(not))
           go(rest.tail, acc :+ chunk)
         }
       }
@@ -47,18 +47,4 @@ object Day01 extends DefaultDay[List[String], List[Elf], Int] {
   }
 
   def not(b: Boolean): Boolean = !b
-
-  def compose[A, B, C](f: B => C, g: A => B): A => C = (x: A) => f(g(x))
-
-  def takeWhile[A](pred: A => Boolean)(list: List[A]): (List[A], List[A]) = {
-    @scala.annotation.tailrec
-    def go(xs: List[A], acc: List[A]): (List[A], List[A]) = {
-      xs match {
-        case Nil => (acc, Nil)
-        case _ => if (pred(xs.head)) go(xs.tail, acc :+ xs.head) else (acc, xs)
-      }
-
-    }
-    go(list, Nil)
-  }
 }
