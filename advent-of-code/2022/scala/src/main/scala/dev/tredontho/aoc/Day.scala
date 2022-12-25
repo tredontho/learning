@@ -7,13 +7,13 @@ trait Day[RawInput, ParsedInput, PartOneOutput, PartTwoOutput] {
   def name: String
 }
 
-/** In early problems, file contents may not need any complex parsing, and the
-  * output types for parts one and two will be the same
+/** DefaultDay will treat the output type for both parts as the same, as this is
+  * likely the common case
   */
-trait DefaultDay[A, B] extends Day[A, A, B, B]
+trait DefaultDay[A, B, C] extends Day[A, B, C, C]
 
-case class DaySolution[RawInput, Input, PartOneOutput, PartTwoOutput](
-    parser: RawInput => Input,
-    partOneSolver: Input => PartOneOutput,
-    partTwoSolver: Input => PartTwoOutput
+case class DaySolution[RawInput, ParsedInput, PartOneOutput, PartTwoOutput](
+    parser: RawInput => ParsedInput,
+    partOneSolver: ParsedInput => PartOneOutput,
+    partTwoSolver: ParsedInput => PartTwoOutput
 )

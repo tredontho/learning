@@ -4,7 +4,7 @@ import Common._
 
 case class Elf(calories: Int)
 
-object Day01 extends Day[List[String], List[Elf], Int, Int] {
+object Day01 extends DefaultDay[List[String], List[Elf], Int] {
   override def solution: DaySolution[List[String], List[Elf], Int, Int] = {
     val parser = (lines: List[String]) => {
       sepBy((x: String) => (x.isEmpty))(lines)
