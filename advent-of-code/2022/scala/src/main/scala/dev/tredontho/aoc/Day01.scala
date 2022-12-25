@@ -15,6 +15,7 @@ object Day01 extends DefaultDay[List[String], List[Elf], Int] {
       elves.sortWith((a, b) => a.calories > b.calories).head.calories
     }
     val partTwoSolver = (elves: List[Elf]) => {
+      print(elves)
       elves
         .sortWith((a, b) => a.calories > b.calories)
         .take(3)
@@ -38,13 +39,14 @@ object Day01 extends DefaultDay[List[String], List[Elf], Int] {
       xs match {
         case Nil => acc
         case _ => {
-          val (chunk, rest) = xs.span(pred.andThen(not))
-          go(rest.tail, acc :+ chunk)
+          val (chunk, rest) = xs.span(pred.andThen(!_))
+          rest match {
+            case Nil => acc :+ chunk
+            case _ => go(rest.tail, acc :+ chunk)
+          }
         }
       }
     }
     go(list, Nil)
   }
-
-  def not(b: Boolean): Boolean = !b
 }
