@@ -1,15 +1,17 @@
 package dev.tredontho.aoc
 
-trait Day[Input, PartOneOutput, PartTwoOutput] {
-  def solution: DaySolution[Input, PartOneOutput, PartTwoOutput]
+trait Day[RawInput, ParsedInput, PartOneOutput, PartTwoOutput] {
+  def solution: DaySolution[RawInput, ParsedInput, PartOneOutput, PartTwoOutput]
+  def loadFile(fileName: String): RawInput
 }
 
-// Each Day will consist of some means to parse the input, a method for taking
-// the parsed input and creating a solution for part 1, and a method for taking
-// the parsed input and creating a solution for part 2.
+/** In early problems, file contents may not need any complex parsing, and the
+  * output types for parts one and two will be the same
+  */
+trait DefaultDay[A, B] extends Day[A, A, B, B]
 
-case class DaySolution[Input, PartOneOutput, PartTwoOutput](
-    parser: String => Input,
+case class DaySolution[RawInput, Input, PartOneOutput, PartTwoOutput](
+    parser: RawInput => Input,
     partOneSolver: Input => PartOneOutput,
     partTwoSolver: Input => PartTwoOutput
 )
