@@ -5,3 +5,5 @@ target/
 .metals
 project/metals.sbt
 project/project
+
+.direnv/
