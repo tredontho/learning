@@ -6,6 +6,10 @@ import scala.io.Source
   */
 object Common {
 
+  /** Identify function, idk if scala has something like this
+    */
+  def id[A](x: A) = x
+
   /** Loads the contents of a file into a list containing each line of that file
     */
   def loadLines(filename: String): List[String] = {

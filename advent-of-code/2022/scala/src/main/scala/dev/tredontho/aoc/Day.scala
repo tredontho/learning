@@ -3,6 +3,8 @@ package dev.tredontho.aoc
 trait Day[RawInput, ParsedInput, PartOneOutput, PartTwoOutput] {
   def solution: DaySolution[RawInput, ParsedInput, PartOneOutput, PartTwoOutput]
   def loadFile(fileName: String): RawInput
+
+  def name: String
 }
 
 /** In early problems, file contents may not need any complex parsing, and the
