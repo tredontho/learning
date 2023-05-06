@@ -2,6 +2,7 @@ package chapter3
 
 import org.scalatest.flatspec._
 import org.scalatest.matchers.should._
+import List.*
 
 class Chapter3Spec extends AnyFlatSpec with Matchers {
   "tail" should "return the list without the first element" in {
@@ -83,5 +84,15 @@ class Chapter3Spec extends AnyFlatSpec with Matchers {
   }
   it should "return 120 for the integers from 1 to 5" in {
     List.productViaFoldLeft(List(1,2,3,4,5)) shouldEqual 120
+  }
+
+  "reverse" should "reverse the elements of a list" in {
+    List.reverse(List(1,2,3,4)) shouldEqual List(4,3,2,1)
+  }
+  it should "return an empty list when reversing an empty list" in {
+    List.reverse(Nil) shouldEqual Nil
+  }
+  it should "not modify a singleton list" in {
+    List.reverse(List(1)) shouldEqual List(1)
   }
 }
