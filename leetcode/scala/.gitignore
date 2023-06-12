@@ -3,3 +3,7 @@
 # Scala
 .bsp/
 target/
+project/project/
+metals.sbt
+.bloop/
+.metals/
