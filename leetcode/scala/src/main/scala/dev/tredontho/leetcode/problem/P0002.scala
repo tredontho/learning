@@ -28,30 +28,37 @@ object P0002Helper {
   }
 }
 
-object P0002 extends Problem[(ListNode, ListNode), ListNode]{
+object P0002 extends Problem[(ListNode, ListNode), ListNode] {
 
   override def name: String = "Add Two Numbers"
 
-  override def description: String = """
-  |You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
-  |
-  |You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+  override def description: String =
+    """
+      |You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+      |
+      |You may assume the two numbers do not contain any leading zero, except the number 0 itself.
   """.stripMargin.trim
 
-
-
-  override def solve(input: (ListNode, ListNode)): ListNode = fromList(addLists(toList(input._1), toList(input._2)))
+  override def solve(input: (ListNode, ListNode)): ListNode = fromList(
+    addLists(toList(input._1), toList(input._2))
+  )
 
   def addLists(xs: List[Int], ys: List[Int]): List[Int] = {
-    def go(xs: List[Int], ys: List[Int], carry: Int, acc: List[Int]): List[Int] = (xs, ys) match {
+    def go(
+        xs: List[Int],
+        ys: List[Int],
+        carry: Int,
+        acc: List[Int]
+    ): List[Int] = (xs, ys) match {
       case (Nil, Nil) => if (carry == 0) acc else carry :: acc
-      case (x_ :: x_s, Nil) => go(x_s, Nil, (x_ + carry) / 10, (x_ + carry) % 10 :: acc)
-      case (Nil, y_ :: y_s) => go(Nil, y_s, (y_ + carry) / 10, (y_ + carry) % 10 :: acc)
-      case (x_ :: x_s, y_ :: y_s) => go(x_s, y_s, (x_ + y_ + carry) / 10, (x_ + y_ + carry) % 10 :: acc)
+      case (x_ :: x_s, Nil) =>
+        go(x_s, Nil, (x_ + carry) / 10, (x_ + carry) % 10 :: acc)
+      case (Nil, y_ :: y_s) =>
+        go(Nil, y_s, (y_ + carry) / 10, (y_ + carry) % 10 :: acc)
+      case (x_ :: x_s, y_ :: y_s) =>
+        go(x_s, y_s, (x_ + y_ + carry) / 10, (x_ + y_ + carry) % 10 :: acc)
     }
     go(xs, ys, 0, Nil).reverse
   }
-
-
 
 }
