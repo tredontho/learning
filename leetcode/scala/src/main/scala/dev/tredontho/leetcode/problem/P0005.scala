@@ -10,49 +10,28 @@ object P0005 extends Problem[String, String] {
     "Given a string s, return the longest palindromic substring in s."
 
   override def solve(input: String): String = {
-    val l = input.toList
-    l.tails
-      .filter(_.nonEmpty)
-      .map { xs =>
-        xs.inits
-          .filter(w => w.nonEmpty && palindrome(w).isDefined)
-          .maxBy(_.length)
-      }
-      .maxBy(_.length)
-      .mkString
+    input.tails.map(x => longestPalindrome(x.inits)).maxBy(_.length)
   }
 
-  def idk[A](l: List[A]): List[A] = {
-    l.tails
-      .filter(_.nonEmpty)
-      .map { xs =>
-        xs.inits
-          .filter(w => w.nonEmpty && palindrome(w).isDefined)
-          .maxBy(_.length)
-      }
-      .maxBy(_.length)
+  /*
+   * No more lists, keep it as strings
+   * Can we cut the substrings in half for palindrome check?
+   */
+
+  def isPalindrome(s: String): Boolean = {
+    if (s.nonEmpty) {
+      val l = s.length / 2
+      val (h, t) = s.splitAt(l)
+      h == t.reverse.take(l) // handles odd-length strings
+    } else false
   }
 
-  def idk2[A](l: List[A]): List[A] = {
-    l.tails
-      .filter(_.nonEmpty)
-      .map(
-        _.inits
-          .filter(_.nonEmpty)
-          .reduceRight((x, y) =>
-            if (x.length > y.length && palindrome(x).isDefined) x else y
-          )
-      )
-      .toList
-      .maxBy(_.length)
-  }
-
-  def longestPalindrome[A](l: List[List[A]]): List[A] = {
-    l.reduceRight((x, y) =>
-      if (x.length > y.length && palindrome(x).isDefined) x else y
+  def longestPalindrome[F[String] <: IterableOnce[String]](
+      xs: F[String]
+  ): String = {
+    xs.reduceRight((x, y) =>
+      if (x.length > y.length && isPalindrome(x)) x else y
     )
   }
 
-  def palindrome[A](s: List[A]): Option[List[A]] =
-    if (s == s.reverse) Some(s) else None
 }
