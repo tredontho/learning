@@ -12,16 +12,19 @@ object P0005 extends Problem[String, String] {
     "Given a string s, return the longest palindromic substring in s."
 
   override def solve(input: String): String = {
-    helper(Queue(input), _.init)
+    helper(LazyList(input))
   }
 
   /*
    * No more lists, keep it as strings
    * Can we cut the substrings in half for palindrome check?
    *
-   * Check the string:
-   *   If it's a palindrome, we're done
-   *   If it's not, check the 2 strings formed by removing the head and last elements, respectively
+   * We start with a list containing a single string, the input
+   * Check the list:
+   *   If it's empty, return ""
+   *   Take the first element:
+   *     If it's a palindrome, we're done
+   *     If it's not, add the 2 strings formed by removing the head and last elements, respectively, to the end of the list (i.e. treat it as a Queue)
    *   Repeat
    */
 
@@ -34,13 +37,14 @@ object P0005 extends Problem[String, String] {
   }
 
   @annotation.tailrec
-  def helper(q: Queue[String], next: String => String): String = {
-    println(s"q.length = ${q.length}")
+  def helper(q: LazyList[String]): String = {
     if (q.isEmpty) ""
     else {
-      val (x, newQueue) = q.dequeue
-      if (isPalindrome(x)) x
-      else helper(newQueue.enqueue(x.init).enqueue(x.tail), next)
+      val (x, newQueue) = (q.head, q.tail)
+      if (x.isEmpty) helper(newQueue)
+      else if (isPalindrome(x)) x
+      else if (x.length == 1) helper(newQueue)
+      else helper(newQueue.appendedAll(LazyList(x.init, x.tail)))
     }
   }
 
