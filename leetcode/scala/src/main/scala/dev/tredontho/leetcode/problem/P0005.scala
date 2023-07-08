@@ -15,7 +15,11 @@ object P0005 extends Problem[String, String] {
     helper(List(input), input, 0, "")
   }
 
-  def log: Boolean = true
+  def shouldLog: Boolean = true
+
+  def log(msg: String) = if (shouldLog) println(msg)
+
+  def p(msg: String) = log(msg)
 
   /*
    * No more lists, keep it as strings
@@ -50,18 +54,41 @@ object P0005 extends Problem[String, String] {
       currentWord: String,
       accLength: Int = 0,
       acc: String = ""
-  ): String = q match {
-    case Nil => {
-      if (currentWord.length <= 1) acc
-      else
-        helper(currentWord.tail.inits.toList, currentWord.tail, accLength, acc)
-    }
-    case (x :: xs) => {
-      val xLength = x.length
-      if (xLength <= accLength) helper(xs, currentWord, accLength, acc)
-      else if (isPalindrome(x))
-        helper(currentWord.tail.inits.toList, currentWord.tail, xLength, x)
-      else helper(xs, currentWord, accLength, acc)
+  ): String = {
+    p("=== NEW ITERATION ===")
+    q match {
+      case Nil => {
+        p(s"Queue was empty")
+        if (currentWord.length <= 1) {
+          p(s"$currentWord is too small to continue, returning $acc")
+          acc
+        } else {
+          p(s"Iterating on $currentWord")
+          helper(
+            currentWord.inits.toList,
+            currentWord.tail,
+            accLength,
+            acc
+          )
+        }
+      }
+      case (x :: xs) => {
+        p(s"Queue was not empty. Head: $x")
+        p(s"currentWord is $currentWord")
+        val xLength = x.length
+        if (xLength <= accLength) {
+          p(s"$x is smaller than $acc, skipping")
+          helper(xs, currentWord, accLength, acc)
+        } else if (isPalindrome(x)) {
+          p(
+            s"$x is a palindrome and is longer than $acc, iterating on ${currentWord.tail}"
+          )
+          helper(currentWord.inits.toList, currentWord.tail, xLength, x)
+        } else {
+          p(s"$x is not a palindrome, skipping")
+          helper(xs, currentWord, accLength, acc)
+        }
+      }
     }
   }
 }
