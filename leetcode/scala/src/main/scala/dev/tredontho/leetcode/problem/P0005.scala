@@ -12,8 +12,10 @@ object P0005 extends Problem[String, String] {
     "Given a string s, return the longest palindromic substring in s."
 
   override def solve(input: String): String = {
-    helper(LazyList(input))
+    helper(List(input), input, 0, "")
   }
+
+  def log: Boolean = true
 
   /*
    * No more lists, keep it as strings
@@ -28,6 +30,12 @@ object P0005 extends Problem[String, String] {
    *   Repeat
    */
 
+  /** Two phase pass:
+    *
+    * We have an initial string, `s`, and a list of candidates, `xs` Check if s
+    * is palindrome Yes -> add `s` to `xs` No -> check `s.init`
+    */
+
   def isPalindrome(s: String): Boolean = {
     if (s.nonEmpty) {
       val l = s.length / 2
@@ -37,15 +45,23 @@ object P0005 extends Problem[String, String] {
   }
 
   @annotation.tailrec
-  def helper(q: LazyList[String]): String = {
-    if (q.isEmpty) ""
-    else {
-      val (x, newQueue) = (q.head, q.tail)
-      if (x.isEmpty) helper(newQueue)
-      else if (isPalindrome(x)) x
-      else if (x.length == 1) helper(newQueue)
-      else helper(newQueue.appendedAll(LazyList(x.init, x.tail)))
+  def helper(
+      q: List[String],
+      currentWord: String,
+      accLength: Int = 0,
+      acc: String = ""
+  ): String = q match {
+    case Nil => {
+      if (currentWord.length <= 1) acc
+      else
+        helper(currentWord.tail.inits.toList, currentWord.tail, accLength, acc)
+    }
+    case (x :: xs) => {
+      val xLength = x.length
+      if (xLength <= accLength) helper(xs, currentWord, accLength, acc)
+      else if (isPalindrome(x))
+        helper(currentWord.tail.inits.toList, currentWord.tail, xLength, x)
+      else helper(xs, currentWord, accLength, acc)
     }
   }
-
 }
