@@ -23,15 +23,22 @@ object P0006 extends Problem[(String, Int), String] {
     if (numRows == 1) word
     else {
       val modulus = (numRows - 1) * 2
-      word.zip(0 to 1000).groupBy(_._2 % modulus).values.flatten.map(_._1).mkString
+      word.zip(0 to 1000).groupBy(x => discriminator(x._2, modulus)).values.flatten.map(_._1).mkString
     }
   }
 
+  def discriminator(index: Int, modulus: Int): Int = {
+    val bucket = index % modulus
+    if (bucket <= modulus / 2) bucket else modulus - bucket
+  }
+
+  /*
   def helper(word: String, numRows: Int, acc: List[String]): String = {
     if (numRows == 1) word
     else
       word.zip(0 to 1000).groupBy(_._2 % (numRows - 1 * 2)).values.flatten.map(_._1).mkString
   }
+  */
 
 // Some example cases:
 // numRows = 1
@@ -74,7 +81,10 @@ object P0006 extends Problem[(String, Int), String] {
 //    35  bd
 //    4   c
 //
-//    So for n = 3, we have 3 lists:
+//    for n = 2 we have 2 lists:
+//      [2*k | k in [0..] and 2*k < input.length]
+//      [2*k + 1 | k in [0..] and 2*k < input.length]
+//    for n = 3, we have 3 lists:
 //      [4*k | k in [0..] and 4*k < input.length]
 //      [4*k + 1 | k in [0..] and 4*k + 1 < input.length] "zipped" with
 //        [4*k - 1 | k in [1..] and 4 * k - 1 < input.length]
@@ -96,9 +106,31 @@ object P0006 extends Problem[(String, Int), String] {
 //      Let's look closer at 6*k + 1 and 6*k - 1
 //      This means that the index `i` is equivalent to 1 or 5 mod 6
 //      Is there a way to combine these conditions?
+//      We can check if the modulus result (i % modulus) is less than half of the modulus
+//        if so, just use that
+//        if not, then subtract i from modulus
 //
-//    for n = 2 we have 2 lists:
-//      [2*k | k in [0..] and 2*k < input.length]
-//      [2*k + 1 | k in [0..] and 2*k < input.length]
+//      This seems to work for 2 <= n <= 5
+//
+//    Well, let's look at n=6 
+//
+//    First, when the word length matches the numRows for numRows = 6:
+//    [0,1,2,3,4,5] with numRows = 6 becomes
+//
+//    0
+//    1
+//    2
+//    3
+//    4
+//    5
+//
+//    with our existing algorithm, we will use modulus == 10 (i.e. 2 * (6 - 1))
+//    0 -> 0
+//    1 -> 1
+//    2 -> 2
+//    3 -> 3
+//    4 -> 4
+//    5 -> 5 (kind of roundabout, it would be calculated as 10 - 5 since (5 < 10 / 2) is false)
+//    
 //
 }
