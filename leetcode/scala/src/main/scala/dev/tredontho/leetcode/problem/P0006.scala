@@ -23,7 +23,7 @@ object P0006 extends Problem[(String, Int), String] {
     if (numRows == 1) word
     else {
       val modulus = (numRows - 1) * 2
-      word.zip(0 to 1000).groupBy(x => discriminator(x._2, modulus)).values.flatten.map(_._1).mkString
+      word.zip(0 to 1000).groupBy(x => discriminator(x._2, modulus)).toSeq.sortBy(_._1).map(_._2).flatten.map(_._1).mkString
     }
   }
 
