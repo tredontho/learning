@@ -18,7 +18,20 @@ object P0006 extends Problem[(String, Int), String] {
       |
       |string convert(string s, int numRows);""".stripMargin
 
-  override def solve(input: (String, Int)): String = ???
+  override def solve(input: (String, Int)): String = {
+    val (word, numRows) = input
+    if (numRows == 1) word
+    else {
+      val modulus = (numRows - 1) * 2
+      word.zip(0 to 1000).groupBy(_._2 % modulus).values.flatten.map(_._1).mkString
+    }
+  }
+
+  def helper(word: String, numRows: Int, acc: List[String]): String = {
+    if (numRows == 1) word
+    else
+      word.zip(0 to 1000).groupBy(_._2 % (numRows - 1 * 2)).values.flatten.map(_._1).mkString
+  }
 
 // Some example cases:
 // numRows = 1
@@ -34,6 +47,11 @@ object P0006 extends Problem[(String, Int), String] {
 //    E   N   D
 //
 //    Can we find a pattern by looking at indices instead of letters?
+//
+//    [0,1,2,3,4,5,6,7,8,9] with numRows = 2 becomes
+//
+//    02468
+//    13579
 //
 //    [0,1,2,3,4,5,6,7,8,9] with numRows = 3 becomes
 //
@@ -61,16 +79,11 @@ object P0006 extends Problem[(String, Int), String] {
 //      [4*k + 1 | k in [0..] and 4*k + 1 < input.length] "zipped" with
 //        [4*k - 1 | k in [1..] and 4 * k - 1 < input.length]
 //      [4*k + 2 | k in [0..] and 4*k + 2 < input.length]
-//     or alternatively
+//     or alternatively (probably doesn't generalize)
 //
-//      [2*(2*k)]
-//      [2*k + 1]
-//      [2*(2*k) + 2]
-//
-//      [2*2*k | k in [0..] and 4*k < input.length]
-//      [2*k + 1 | k in [0..] and 4*k + 1 < input.length] "zipped" with
-//        [4*k - 1 | k in [1..] and 4 * k - 1 < input.length]
-//      [4*k + 2 | k in [0..] and 4*k + 2 < input.length]
+//      [2*2*k | k in [0..] and 2*(2*k) < input.length]
+//      [2*k + 1 | k in [0..] and 2*k + 1 < input.length]
+//      [2*(2*k) + 2 | k in [0..] and 2*(2*k) + 2 < input.length]
 //
 //    for n = 4, we have 4 lists:
 //      [6*k | k in [0..] and 6*k < input.length]
@@ -79,5 +92,13 @@ object P0006 extends Problem[(String, Int), String] {
 //      [6*k + 2 | k in [0..] and 6*k + 2 < input.length] "zipped" with
 //        [6*k - 2 | k in [1..] and 6*k - 2 < input.length] "zipped" with
 //      [6*k + 3 | k in [0..] and 6*k + 3 < input.length]
-
+//
+//      Let's look closer at 6*k + 1 and 6*k - 1
+//      This means that the index `i` is equivalent to 1 or 5 mod 6
+//      Is there a way to combine these conditions?
+//
+//    for n = 2 we have 2 lists:
+//      [2*k | k in [0..] and 2*k < input.length]
+//      [2*k + 1 | k in [0..] and 2*k < input.length]
+//
 }
