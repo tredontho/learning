@@ -23,7 +23,15 @@ object P0006 extends Problem[(String, Int), String] {
     if (numRows == 1) word
     else {
       val modulus = (numRows - 1) * 2
-      word.zip(0 to 1000).groupBy(x => discriminator(x._2, modulus)).toSeq.sortBy(_._1).map(_._2).flatten.map(_._1).mkString
+      word
+        .zip(0 to 1000)
+        .groupBy(x => discriminator(x._2, modulus))
+        .toSeq
+        .sortBy(_._1)
+        .map(_._2)
+        .flatten
+        .map(_._1)
+        .mkString
     }
   }
 
@@ -38,7 +46,7 @@ object P0006 extends Problem[(String, Int), String] {
     else
       word.zip(0 to 1000).groupBy(_._2 % (numRows - 1 * 2)).values.flatten.map(_._1).mkString
   }
-  */
+   */
 
 // Some example cases:
 // numRows = 1
@@ -112,7 +120,7 @@ object P0006 extends Problem[(String, Int), String] {
 //
 //      This seems to work for 2 <= n <= 5
 //
-//    Well, let's look at n=6 
+//    Well, let's look at n=6
 //
 //    First, when the word length matches the numRows for numRows = 6:
 //    [0,1,2,3,4,5] with numRows = 6 becomes
@@ -131,6 +139,6 @@ object P0006 extends Problem[(String, Int), String] {
 //    3 -> 3
 //    4 -> 4
 //    5 -> 5 (kind of roundabout, it would be calculated as 10 - 5 since (5 < 10 / 2) is false)
-//    
+//
 //
 }
