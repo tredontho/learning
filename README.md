@@ -3,6 +3,11 @@ Previously I had repos scattered all over, one for each book or coding exercise 
 # Advent of Code
 Working through the problems from [Advent of Code](https://adventofcode.com/) - each year should have its own directory
 
+# Codeforces
+[Codeforces](https://codeforces.com) is another programming problem website - some folks on Twitter
+indicated that the problems were more "real-world" than e.g. leetcode problems
+
+
 # Crafting Interpreters
 Following along with the [Crafting Interpreters](https://craftinginterpreters.com/) book.
 
