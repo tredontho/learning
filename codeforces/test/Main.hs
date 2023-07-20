@@ -1,8 +1,8 @@
 module Main (main) where
 
-import Test.HUnit
 import qualified Codeforces.Problem.P0001ATest as P0001A
 import System.Exit
+import Test.HUnit
 
 main :: IO ()
 main = do

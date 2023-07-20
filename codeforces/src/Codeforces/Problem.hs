@@ -1,4 +1,5 @@
-module Codeforces.Problem(Problem(..)) where
+module Codeforces.Problem (Problem (..)) where
+
 import Data.Text (Text)
 
 data Problem input output = Problem
