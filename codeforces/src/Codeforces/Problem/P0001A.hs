@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Codeforces.Problem.P0001A (p0001A) where
+module Codeforces.Problem.P0001A (p0001A, main) where
 
 import Codeforces.Problem (Problem (..))
 
@@ -22,5 +22,13 @@ p0001A =
         \ Input: The input contains three positive integer numbers\
         \ in the first line: n,  m and a (1 ≤  n, m, a ≤ 109).\
         \ Output: Write the needed number of flagstones."
-    , solve = \(n, m, a) -> ceiling ((fromIntegral n / fromIntegral a) :: Double) * ceiling ((fromIntegral m / fromIntegral a) :: Double)
+    , solve = solver
     }
+
+solver :: (Int, Int, Int) -> Int
+solver (n, m, a) = ceiling ((fromIntegral n / fromIntegral a) :: Double) * ceiling ((fromIntegral m / fromIntegral a) :: Double)
+
+main :: IO ()
+main = do
+  inputs <- map read . words <$> getLine :: IO [Int]
+  print $ solver (head inputs, inputs !! 1, inputs !! 2)
