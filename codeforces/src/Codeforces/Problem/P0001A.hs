@@ -19,5 +19,5 @@ p0001A = Problem
                    \ Input: The input contains three positive integer numbers\
                    \ in the first line: n,  m and a (1 ≤  n, m, a ≤ 109).\
                    \ Output: Write the needed number of flagstones."
-  , solve = undefined
+  , solve = \(n,m,a) -> ceiling ((fromIntegral n / fromIntegral a) :: Double) * ceiling ((fromIntegral m / fromIntegral a) :: Double)
   }

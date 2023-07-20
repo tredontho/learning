@@ -8,4 +8,4 @@ tests :: Test
 tests = test [test1]
 
 test1 :: Test
-test1 = TestCase (assertEqual "example" (solve p0001A (6,6,4)) 4)
+test1 = TestCase (assertEqual "example" 4 (solve p0001A (6,6,4)))
