@@ -63,7 +63,8 @@ library
 
     -- Modules exported by the library.
     exposed-modules:  Codeforces.Problem,
-                      Codeforces.Problem.P0001A
+                      Codeforces.Problem.P0001A,
+                      Codeforces.Problem.P0001B
 
     -- Modules included in this library but not exported.
     -- other-modules:
