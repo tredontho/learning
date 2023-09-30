@@ -9,6 +9,19 @@ Following along with the [Crafting Interpreters](https://craftinginterpreters.co
 # Functional Programming in Scala
 Working through exercises in the [Functional Programming in Scala](https://www.manning.com/books/functional-programming-in-scala) book.
 
+# Haskell in Depth
+Working through exercises/examples in the [Haskell in Depth](https://www.manning.com/books/haskell-in-depth) book.
+
+Note: The examples for the book are available at
+<https://github.com/bravit/hid-examples.git> and included in the
+`haskell-in-depth` directory as a
+[Git Submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules), so you'll
+need to either run
+```shell
+git submodule update --init
+```
+or, if cloning this repo for the first time, clone with the `--recurse-submodules` flag.
+
 # LeetCode
 Attempts/solutions for [LeetCode](https://leetcode.com/) problems
 
