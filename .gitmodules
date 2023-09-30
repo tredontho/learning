@@ -1,0 +1,3 @@
+[submodule "haskell-in-depth/hid-examples"]
+	path = haskell-in-depth/hid-examples
+	url = https://github.com/bravit/hid-examples.git
