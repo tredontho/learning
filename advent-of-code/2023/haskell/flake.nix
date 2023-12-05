@@ -11,7 +11,12 @@
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
         devShells.default = pkgs.mkShell {
-          buildInputs = [pkgs.cabal-install pkgs.ghcid pkgs.ghc pkgs.haskellPackages.fourmolu];
+          buildInputs = [
+            pkgs.cabal-install
+            pkgs.ghcid
+            pkgs.ghc
+            pkgs.haskellPackages.fourmolu
+          ];
         };
       });
 }
