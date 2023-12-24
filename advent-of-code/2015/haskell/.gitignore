@@ -1,0 +1,11 @@
+# AoC
+## Don't check in the problem inputs
+data/
+
+# Haskell
+dist-newstyle/
+
+# Misc
+.direnv/
+## Doesn't hurt anything but simple for anybody who uses direnv to setup themselves
+.envrc
