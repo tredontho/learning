@@ -63,7 +63,10 @@ executable aoc2015
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
-    other-modules: Day01
+    other-modules: Paths_aoc2015,
+                   Day01
+
+    autogen-modules: Paths_aoc2015
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
@@ -71,7 +74,8 @@ executable aoc2015
     -- Other library packages from which modules are imported.
     build-depends:    base ^>=4.17.2.1,
                       megaparsec ^>=9.6.1,
-                      text ^>=2.1
+                      text ^>=2.1,
+                      bytestring ^>=0.12.0.2
 
     -- Directories containing source files.
     hs-source-dirs:   app
