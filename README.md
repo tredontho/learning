@@ -27,3 +27,6 @@ Attempts/solutions for [LeetCode](https://leetcode.com/) problems
 
 # Optics by Example
 Working through exercises from [Optics by Example](https://leanpub.com/optics-by-example)
+
+# Purescript by Example
+<https://book.purescript.org/index.html>
