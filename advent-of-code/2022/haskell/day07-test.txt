@@ -1,0 +1,1 @@
+"$ ls\ndir a\n14848514 b.txt\n8504156 c.dat\ndir d\n"
