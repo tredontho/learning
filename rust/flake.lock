@@ -147,11 +147,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-o/EpaABJjtRmuTW2A4e2efAuKeaw4nrXJ9BhErWKxio=",
-        "path": "/nix/store/b0gwzhz8qaiw73dfw8s50isv91l6brcl-source/rust/workshop-runner",
+        "path": "/nix/store/hhvjij4lw3z0gybgxmcjr3wc1c2pafhg-source/rust/workshop-runner",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/b0gwzhz8qaiw73dfw8s50isv91l6brcl-source/rust/workshop-runner",
+        "path": "/nix/store/hhvjij4lw3z0gybgxmcjr3wc1c2pafhg-source/rust/workshop-runner",
         "type": "path"
       }
     },
