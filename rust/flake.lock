@@ -48,22 +48,6 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1715787315,
-        "narHash": "sha256-cYApT0NXJfqBkKcci7D9Kr4CBYZKOQKDYA23q8XNuWg=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "33d1e753c82ffc557b4a585c77de43d4c922ebb5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -140,18 +124,20 @@
     "workshop-runner": {
       "inputs": {
         "naersk": "naersk",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "utils": "utils_2",
         "workshop-runner": "workshop-runner_2"
       },
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-o/EpaABJjtRmuTW2A4e2efAuKeaw4nrXJ9BhErWKxio=",
-        "path": "/nix/store/hhvjij4lw3z0gybgxmcjr3wc1c2pafhg-source/rust/workshop-runner",
+        "path": "/nix/store/3dr52wd96khz9g7vzwqrxlp2xlracqdc-source/rust/workshop-runner",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/hhvjij4lw3z0gybgxmcjr3wc1c2pafhg-source/rust/workshop-runner",
+        "path": "/nix/store/3dr52wd96khz9g7vzwqrxlp2xlracqdc-source/rust/workshop-runner",
         "type": "path"
       }
     },
