@@ -40,8 +40,10 @@ impl PPM {
         buffer.push_str("P3\n");
         buffer.push_str(&format!("{} {}\n", self.width, self.height));
         buffer.push_str("255\n");
-        // TODO: can probably factor this out
-        for pixel in self.data.iter() {
+        for (i, pixel) in self.data.iter().enumerate() {
+            if i % self.width == 0 {
+                eprintln!("{} lines remaining", self.height - (i / self.width))
+            }
             buffer.push_str(&format!("{} {} {}\n", pixel.0, pixel.1, pixel.2));
         }
         buffer
