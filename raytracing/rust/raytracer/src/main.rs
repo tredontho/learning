@@ -1,3 +1,4 @@
+use raytracer::vec3::Vec3;
 use raytracer::RGB;
 fn main() {
     let width = 256;
