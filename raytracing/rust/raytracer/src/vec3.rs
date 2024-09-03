@@ -12,11 +12,13 @@ pub const I: Vec3 = Vec3 {
     y: 0.0,
     z: 0.0,
 };
+
 pub const J: Vec3 = Vec3 {
     x: 0.0,
     y: 1.0,
     z: 0.0,
 };
+
 pub const K: Vec3 = Vec3 {
     x: 0.0,
     y: 0.0,
@@ -51,13 +53,13 @@ impl Vec3 {
         self / self.length()
     }
 
-    pub fn get_x(&self) -> f64 {
+    pub fn x(&self) -> f64 {
         self.x
     }
-    pub fn get_y(&self) -> f64 {
+    pub fn y(&self) -> f64 {
         self.y
     }
-    pub fn get_z(&self) -> f64 {
+    pub fn z(&self) -> f64 {
         self.z
     }
     pub fn length(&self) -> f64 {
@@ -91,6 +93,14 @@ impl Add<&Vec3> for &Vec3 {
             y: self.y + rhs.y,
             z: self.z + rhs.z,
         }
+    }
+}
+
+impl Add<Vec3> for &Vec3 {
+    type Output = Vec3;
+
+    fn add(self, rhs: Vec3) -> Self::Output {
+        self + &rhs
     }
 }
 
