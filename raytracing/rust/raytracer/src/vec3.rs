@@ -349,4 +349,13 @@ mod tests {
         assert_eq!(expected, -&v0);
         assert_eq!(v0, -&(-&v0));
     }
+
+    #[test]
+    fn divide() {
+        let s = 2.0f64;
+        let v0 = Vec3::new(2.0, 4.0, 8.0);
+
+        let expected = Vec3::new(1.0, 2.0, 4.0);
+        assert_eq!(expected, &v0 / s);
+    }
 }
